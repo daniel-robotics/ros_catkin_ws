@@ -1,0 +1,41 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "CATKIN: Build All Packages",
+            "type": "catkin_build",
+            "group": "build",
+            "task": "build",
+            "problemMatcher": [
+                "$catkin-gcc",
+                "$catkin-cmake"
+            ]
+        },
+        {
+            "label": "CATKIN: Build Current Package",
+            "type": "catkin_build",
+            "group": "build",
+            "task": "build current package",
+            "problemMatcher": [
+                "$catkin-gcc",
+                "$catkin-cmake"
+            ]
+        },
+        {
+            "label": "CATKIN: Clean Workspace",
+            "type": "catkin_build",
+            "group": "build",
+            "task": "clean",
+            "problemMatcher": [
+                "$catkin-gcc",
+                "$catkin-cmake"
+            ]
+        },
+        {
+            "label": "TEMPLATE: Shell command task",
+            "type": "shell",
+            "group": "build",
+            "command": "echo $ROS_HOME",
+        },
+    ]
+}
