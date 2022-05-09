@@ -6,11 +6,11 @@
 	],
 	"settings": {
 		"python.autoComplete.extraPaths": [
-			"/home/local/roomba_base_station_catkin_ws/devel/lib/python3/dist-packages",
+			"${workspaceFolder}/devel/lib/python3/dist-packages",
 			"/opt/ros/noetic/lib/python3/dist-packages"
 		],
 		"python.analysis.extraPaths": [
-			"/home/local/roomba_base_station_catkin_ws/devel/lib/python3/dist-packages",
+			"${workspaceFolder}/devel/lib/python3/dist-packages",
 			"/opt/ros/noetic/lib/python3/dist-packages"
 		]
 	}
