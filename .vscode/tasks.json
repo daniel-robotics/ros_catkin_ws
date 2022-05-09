@@ -32,10 +32,10 @@
             ]
         },
         {
-            "label": "TEMPLATE: Shell command task",
+            "label": "CATKIN: Init Workspace",
             "type": "shell",
             "group": "build",
-            "command": "echo $ROS_HOME",
+            "command": "${workspaceFolder}/init.sh",
         },
     ]
 }

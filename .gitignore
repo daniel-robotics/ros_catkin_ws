@@ -1,9 +1,12 @@
+# Exclude generated Catkin files, but keep settings
 /build
 /devel
 /logs
+__pycache__/
 /.catkin_tools/profiles/default/packages
+/.catkin_tools/profiles/default/devel_collisions.txt
 
-# VS Code stuff
+# Exclude generated VS Code databases, but keep settings
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
@@ -12,8 +15,5 @@
 !.vscode/*.code-snippets
 !.vscode/c_cpp_properties.json
 
-# Local History for Visual Studio Code
-.history/
-
-# Built Visual Studio Code Extensions
-*.vsix
+# Exclude downloaded dependencies
+/src/simontest
