@@ -1,0 +1,17 @@
+#!/usr/bin/env python
+
+from template_rospy_pkg.template_node import TemplateNode
+from template_rospy_pkg.utils.config_util import *
+
+
+DEFAULT_CONFIG_FILE = get_package_path("template_rospy_pkg")+"/config/template_node.json"
+
+
+if __name__ == '__main__':
+    ros_args, user_args = parse_args()
+    print("ROS:")
+    print(ros_args)
+    print("USER:")
+    print(user_args)
+    #TemplateNode(name)
+
