@@ -6,21 +6,28 @@ import json
 import rospy
 import rospkg
 
-
+# Returns root path of package_name
 def get_package_path(package_name):
     rospack = rospkg.RosPack()
     return rospack.get_path(package_name)
 
-# 
+# Create dictionaries of ROS-appended arguments and user-provided arguments
 def parse_args():
     ros_args = {}
     user_args = {}
-    user_args_list = rospy.myargv()[1:]
 
     for arg in sys.argv:
         if arg.startswith("__"):
             tokens = arg.split(":=")
             ros_args[tokens[0]] = tokens[1]
+    
+    user_args_list = rospy.myargv()[1:]
+    i = 0
+    while i+1 < len(user_args_list):
+        key = user_args_list[i]
+        val = user_args_list[i+1]
+        user_args[key] = val
+        i += 2
     
     return ros_args, user_args
 

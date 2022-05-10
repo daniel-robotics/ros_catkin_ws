@@ -6,19 +6,17 @@ class TemplateNode:
     #   Init
     #   Starts a ROS node with a given name
     #********************************************************************************************** 
-    def __init__(self, name, params=None):
+    def __init__(self, name, start=True):
         self.name = name
 
         # Start node and register shutdown hook
         rospy.init_node(self.name)    
-        self.logwarn("Initializing node...", force=True)
         rospy.on_shutdown(self.shutdown) 
-
+        
         # Read parameters from ROS parameter server
-        if params is None:
-            self.params = rospy.get_param("~")
-        else:
-            self.params = params
+        self.params = rospy.get_param("~")
+
+        self.logwarn("Initializing node...", force=True)
 
         # Documentation on publishers and subscribers: http://wiki.ros.org/rospy/Overview/Publishers%20and%20Subscribers
         self.loginfo("Starting publisher on \"template_topic\"")
@@ -34,19 +32,16 @@ class TemplateNode:
 
         self.logwarn("Node Initialized", force=True)
 
+        # Runs self.loop() at the rate set by the parameter, until ROS shuts down or CTRL-C is pressed in the terminal
         if start is True:
-            # Runs self.loop() at the rate set by the parameter, until ROS shuts down or CTRL-C is pressed in the terminal
-            self.loginfo("Looping at rate %d Hz..." % (self.params.rate))
+            self.loginfo("Looping at rate %d Hz..." % (self.params['rate']))
             self.iterations = 0
-            rate = rospy.Rate(self.params.rate)
+            rate = rospy.Rate(self.params['rate'])
             while not rospy.is_shutdown():
                 self.iterations += 1
                 self.loop()
-                rate.sleep()
-        else:
-            # Idle until shutdown (still runs subscriber callbacks)
-            self.loginfo("Idling until shutdown...")
-            rospy.spin()
+                if not rospy.is_shutdown():
+                    rate.sleep()
 
 
     #********************************************************************************************** 
@@ -54,7 +49,7 @@ class TemplateNode:
     #   Function is called at the rate defined in the launch file (or via command line)
     #********************************************************************************************** 
     def loop(self):
-        msg = std_msgs.msg.UInt64()
+        msg = std_msgs.msg.UInt32()
         msg.data = self.iterations
         self.publish(msg)
     
@@ -63,7 +58,7 @@ class TemplateNode:
     #   PUBLISHER
     #   Publish a message to the topic defined in __init__
     #********************************************************************************************** 
-    def publish(self, msg=std_msgs.msg.UInt64()):
+    def publish(self, msg=std_msgs.msg.UInt32()):
         self.publisher.publish(msg)
         self.loginfo("Publishing value: %d" % self.iterations)
 
@@ -82,17 +77,17 @@ class TemplateNode:
     #********************************************************************************************** 
     # Logs a Message string to the console (only if parameter "verbose" is True or force=True is provided)
     def loginfo(self, msg, force=False):
-        if self.params.verbose is True or force is True:
+        if self.params['verbose'] is True or force is True:
             rospy.loginfo("[%s] %s" % (self.name, msg) )
     
     # Logs a Warning string to the console (only if parameter "verbose" is True or force=True is provided)
     def logwarn(self, msg, force=False):
-        if self.params.verbose is True or force is True:
+        if self.params['verbose'] is True or force is True:
             rospy.logwarn("[%s] %s" % (self.name, msg) )
    
     # Logs an Error string to the console (only if parameter "verbose" is True or force=True is provided)
     def logerr(self, msg, force=False):
-        if self.params.verbose is True or force is True:
+        if self.params['verbose'] is True or force is True:
             rospy.logerr("[%s] %s" % (self.name, msg) )
 
 
