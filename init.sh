@@ -27,6 +27,6 @@ catkin build
 # Set this as the default catkin project and source it
 APPEND="source \"$SCRIPT_DIR/devel/setup.bash\""
 FILE="$HOME/.bashrc"
-grep -qxF "$APPEND" "$FILE" || echo "$APPEND" >> "$FILE"
+grep -qxF "$APPEND" "$FILE" || echo "$APPEND" | tee -a "$FILE" > /dev/null
 
 source ~/.bashrc
