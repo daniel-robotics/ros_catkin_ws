@@ -11,23 +11,33 @@ def get_package_path(package_name):
     rospack = rospkg.RosPack()
     return rospack.get_path(package_name)
 
-# Create dictionaries of ROS-appended arguments and user-provided arguments
-def parse_args():
+# Create separate dictionaries of ROS-appended arguments and user-provided arguments
+def parse_args(argparser=None):
     ros_args = {}
     user_args = {}
 
     for arg in sys.argv:
         if arg.startswith("__"):
             tokens = arg.split(":=")
-            ros_args[tokens[0]] = tokens[1]
+            key = tokens[0]
+            val = tokens[1] # all values are strings by default
+            try:
+                val = bool(distutils.util.strtobool(val)) # attempt to convert it to a bool
+            except:
+                pass
+            ros_args[key] = val
     
     user_args_list = rospy.myargv()[1:]
-    i = 0
-    while i+1 < len(user_args_list):
-        key = user_args_list[i]
-        val = user_args_list[i+1]
-        user_args[key] = val
-        i += 2
+    if argparser is not None:
+        args, unknown = argparser.parse_known_args(user_args_list)
+        user_args = args.__dict__
+    else:
+        i = 0
+        while i+1 < len(user_args_list):
+            key = user_args_list[i]
+            val = user_args_list[i+1]
+            user_args[key] = val
+            i += 2
     
     return ros_args, user_args
 

@@ -2,7 +2,6 @@
 /build
 /devel
 /logs
-__pycache__/
 /.catkin_tools/profiles/default/packages
 /.catkin_tools/profiles/default/devel_collisions.txt
 
@@ -14,6 +13,10 @@ __pycache__/
 !.vscode/extensions.json
 !.vscode/*.code-snippets
 !.vscode/c_cpp_properties.json
+
+# Exclude Python compiled files
+__pycache__/
+*.pyc
 
 # Exclude downloaded dependencies
 /src/simontest

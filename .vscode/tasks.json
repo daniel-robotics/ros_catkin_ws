@@ -3,23 +3,63 @@
     "tasks": [
         {
             "label": "CATKIN: Build All Packages",
-            "type": "catkin_build",
+            "type": "shell",
             "group": "build",
+            "command": "source ${workspaceFolder}/devel/setup.bash && echo REMEMBER: source ./devel/setup.bash",
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared",
+                "showReuseMessage": true
+            },
+            "dependsOn": [
+                "build-all"
+            ]
+        },
+        {
+            "label": "build-all",
+            "type": "catkin_build",
             "task": "build",
             "problemMatcher": [
                 "$catkin-gcc",
                 "$catkin-cmake"
-            ]
+            ],
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared",
+                "showReuseMessage": false
+            }
         },
         {
             "label": "CATKIN: Build Current Package",
+            "type": "shell",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "command": "source ${workspaceFolder}/devel/setup.bash && echo REMEMBER: source ./devel/setup.bash",
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared",
+                "showReuseMessage": true
+            },
+            "dependsOn": [
+                "build-current"
+            ]
+        },
+        {
+            "label": "build-current",
             "type": "catkin_build",
             "group": "build",
             "task": "build current package",
             "problemMatcher": [
                 "$catkin-gcc",
                 "$catkin-cmake"
-            ]
+            ],
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared",
+                "showReuseMessage": false
+            }
         },
         {
             "label": "CATKIN: Clean Workspace",
@@ -29,13 +69,21 @@
             "problemMatcher": [
                 "$catkin-gcc",
                 "$catkin-cmake"
-            ]
+            ],
+            "presentation": {
+                "reveal": "always",
+                "panel": "new"
+            }
         },
         {
             "label": "CATKIN: Init Workspace",
             "type": "shell",
             "group": "build",
             "command": "${workspaceFolder}/init.sh",
+            "presentation": {
+                "reveal": "always",
+                "panel": "new"
+            }
         },
     ]
 }
