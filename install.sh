@@ -10,26 +10,15 @@ if [ "$EUID" -eq 0 ]; then
 fi
 
 # Download additional github projects into source directory
-cd "$SCRIPT_DIR/src"
-if [ -d "create_robot" ]; then
-    cd "create_robot" && git pull origin melodic
-else
-    git clone git@github.com:danielk-98/create_robot.git
-fi
-cd "$SCRIPT_DIR/src"
-if [ -d "libcreate" ]; then
-    cd "libcreate" && git pull origin master
-else
-    git clone git@github.com:AutonomyLab/libcreate.git
-fi
-cd "$SCRIPT_DIR/src"
-if [ -d "joy_teleop" ]; then
-    cd "joy_teleop" && git pull origin master
-else
-    git clone git@github.com:project-omicron/joy_teleop.git
-fi
+#   cd "$SCRIPT_DIR/src"
+#   if [ -d "create_robot" ]; then
+#       cd "create_robot" && git pull origin melodic
+#   else
+#       git clone git@github.com:danielk-98/create_robot.git
+#   fi
 
 # Install ROS dependencies for each package
+cd "$SCRIPT_DIR"
 rosdep update
 if [ -z ${ROS_OS_OVERRIDE+x} ]; then
     rosdep install --from-paths ./src --ignore-packages-from-source --rosdistro $ROS_DISTRO --os=$ROS_OS_OVERRIDE -y
