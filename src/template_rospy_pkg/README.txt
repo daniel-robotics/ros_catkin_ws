@@ -22,8 +22,10 @@ template_rospy_pkg/     # Root folder defines name of Catkin package
 |   |   |   
 |   |   |   util/                   # A python sub-package
 |   |   |   |   
-|   |   |   |   config_utils.py          # Common utilities for configuring rospy nodes
+|   |   |   |   __init__.py             # Designates this folder as a package. Just imports everything from this folder.
+|   |   |   |   config_utils.py         # Common utilities for configuring rospy nodes
 |   |   |   |
+|   |   |   __init__.py         # Designates this folder as a package. Just imports everything from this folder.
 |   |   |   base_node.py        # Abstract class which provides basic node functionality.
 |   |   |   example_publisher.py  # Example class extending BaseNode which implements a simple publisher
 |   |   |   example_subscriber.py # Example class extending BaseNode which implements a simple subscriber
