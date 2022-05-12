@@ -25,11 +25,13 @@ template_rospy_pkg/     # Root folder defines name of Catkin package
 |   |   |   |   config_utils.py          # Common utilities for configuring rospy nodes
 |   |   |   |
 |   |   |   base_node.py        # Abstract class which provides basic node functionality.
-|   |   |   example_publisher.py # Example class extending BaseNode which implements a simple publisher
+|   |   |   example_publisher.py  # Example class extending BaseNode which implements a simple publisher
 |   |   |   example_subscriber.py # Example class extending BaseNode which implements a simple subscriber
 |   |   |   
 |   |   CMakeLists.txt          # Catkin-required file which defines the build process  
+|   |   install.sh              # Installs dependencies for this package (edit as required)
 |   |   package.xml             # Catkin-required file which defines the package (name, dependencies on other packages, etc)  
+|   |   requirements.txt        # List of python packages required to be installed by Pip
 |   |   setup.py                # Installs nodes, scripts, launch files, and Python packages (src) such that other packages (and ROS) can find them
 |   |
 |
