@@ -1,11 +1,13 @@
 {
+    "files.eol": "\n",
     "python.analysis.extraPaths": [
-        "./devel/lib/python3/dist-packages",
         "/opt/ros/noetic/lib/python3/dist-packages",
+        "devel/lib/python3/dist-packages",
+        "src/template_rospy_pkg/src"
     ],
     "python.autoComplete.extraPaths": [
-        "/home/shared/template_catkin_ws/devel/lib/python3/dist-packages",
-        "/home/shared/roomba_base_station_catkin_ws/devel/lib/python3/dist-packages",
-        "/opt/ros/noetic/lib/python3/dist-packages"
+        "/opt/ros/noetic/lib/python3/dist-packages",
+        "devel/lib/python3/dist-packages",
+        "src/template_rospy_pkg/src"
     ]
 }

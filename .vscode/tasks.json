@@ -3,20 +3,6 @@
     "tasks": [
         {
             "label": "CATKIN: Build All Packages",
-            "type": "shell",
-            "group": "build",
-            "command": "source ${workspaceFolder}/devel/setup.bash && echo REMEMBER: source ./devel/setup.bash",
-            "presentation": {
-                "reveal": "always",
-                "panel": "shared",
-                "showReuseMessage": true
-            },
-            "dependsOn": [
-                "build-all"
-            ]
-        },
-        {
-            "label": "build-all",
             "type": "catkin_build",
             "task": "build",
             "problemMatcher": [
@@ -26,28 +12,11 @@
             "presentation": {
                 "reveal": "always",
                 "panel": "shared",
-                "showReuseMessage": false
+                "showReuseMessage": true
             }
         },
         {
             "label": "CATKIN: Build Current Package",
-            "type": "shell",
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
-            "command": "source ${workspaceFolder}/devel/setup.bash && echo REMEMBER: source ./devel/setup.bash",
-            "presentation": {
-                "reveal": "always",
-                "panel": "shared",
-                "showReuseMessage": true
-            },
-            "dependsOn": [
-                "build-current"
-            ]
-        },
-        {
-            "label": "build-current",
             "type": "catkin_build",
             "group": "build",
             "task": "build current package",
@@ -58,7 +27,7 @@
             "presentation": {
                 "reveal": "always",
                 "panel": "shared",
-                "showReuseMessage": false
+                "showReuseMessage": true
             }
         },
         {
@@ -84,6 +53,6 @@
                 "reveal": "always",
                 "panel": "new"
             }
-        },
+        }
     ]
 }

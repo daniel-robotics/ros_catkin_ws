@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
-PROJECT_NAME="$(basename $SCRIPT_DIR)"
+PROJECT_NAME="$(basename "$SCRIPT_DIR")"
 
 # Download additional github projects into source directory
 #   cd "$SCRIPT_DIR/src"
