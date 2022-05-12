@@ -1,14 +1,7 @@
-from abc import ABC, abstractmethod
-from enum import Enum
 
+from abc import ABC, abstractmethod
 import rospy    # Documentation: http://docs.ros.org/en/melodic/api/rospy/html/
 
-
-
-class StartMode(Enum):
-    INIT_ONLY = 1
-    LOOP = 2
-    SPIN = 3
 
 class BaseNode(ABC):
 
@@ -22,12 +15,8 @@ class BaseNode(ABC):
     #           path to root of Catkin package
     #       clear_params_on_exit:
     #           If True, attempts to delete all parameters in param_namespace on exit
-    #       startmode:
-    #           StartMode.INIT_ONLY - Initializes the node, publishers, subscribers then returns without doing anything
-    #           StartMode.LOOP      - Runs self.loop() at the frequency specified by the 'rate' parameter
-    #           StartMode.SPIN      - Runs rospy.spin(), which blocks indefinitely but still runs subscriber callbacks
     #********************************************************************************************** 
-    def __init__(self, name, param_namespace, package_path, clear_params_on_exit, startmode):
+    def __init__(self, name, param_namespace, package_path, clear_params_on_exit):
 
         # Register a node with the ROS Master server and register a shutdown hook
         #    - only one node allowed per process
@@ -57,13 +46,6 @@ class BaseNode(ABC):
 
         self.logwarn("Node Initialized", force=True)
 
-        # Optionally start some process
-        if startmode == StartMode.INIT_ONLY:
-            pass
-        elif startmode == StartMode.LOOP:
-            self.start_loop()
-        elif startmode == StartMode.SPIN:
-            self.start_spin()
 
     # Runs self.loop() at the rate set by the parameter, until ROS shuts down or CTRL-C is pressed in the terminal
     # IF rate==0, loop as fast as possible without sleeping

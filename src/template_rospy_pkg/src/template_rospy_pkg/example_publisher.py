@@ -1,5 +1,5 @@
 
-from template_rospy_pkg.base_node import BaseNode, StartMode
+from template_rospy_pkg.base_node import BaseNode
 import rospy    # Documentation: http://docs.ros.org/en/melodic/api/rospy/html/
 import std_msgs.msg
 import template_msg_pkg.msg._template_msg
@@ -17,18 +17,16 @@ class ExamplePublisher(BaseNode):
     #           path to root of Catkin package
     #       clear_params_on_exit:
     #           If True, attempts to delete all parameters in param_namespace on exit
-    #       startmode:
-    #           StartMode.INIT_ONLY - Initializes the node, publishers, subscribers then returns without doing anything
-    #           StartMode.LOOP      - Runs self.loop() at the frequency specified by the 'rate' parameter
-    #           StartMode.SPIN      - Runs rospy.spin(), which blocks indefinitely but still runs subscriber callbacks
     #********************************************************************************************** 
     def __init__(self, name, param_namespace, package_path, clear_params_on_exit):
        
-       super().__init__(name,
+        super().__init__(name,
                         param_namespace,
                         package_path,
-                        clear_params_on_exit,
-                        StartMode.LOOP)
+                        clear_params_on_exit)
+        
+        self.start_loop()
+        
 
 
     #********************************************************************************************** 
