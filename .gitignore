@@ -19,4 +19,5 @@ __pycache__/
 *.pyc
 
 # Exclude downloaded dependencies
-/src/simontest
+/src/template_msg_pkg
+/src/template_rospy_pkg

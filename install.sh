@@ -10,12 +10,18 @@ if [ "$EUID" -eq 0 ]; then
 fi
 
 # Download additional github projects into source directory
-#   cd "$SCRIPT_DIR/src"
-#   if [ -d "create_robot" ]; then
-#       cd "create_robot" && git pull origin melodic
-#   else
-#       git clone git@github.com:danielk-98/create_robot.git
-#   fi
+cd "$SCRIPT_DIR/src"
+if [ -d "template_rospy_pkg" ]; then
+    cd "template_rospy_pkg" && git pull origin main
+else
+    git clone https://github.com/danielk-98/template_rospy_pkg.git
+fi
+cd "$SCRIPT_DIR/src"
+if [ -d "template_msg_pkg" ]; then
+    cd "template_msg_pkg" && git pull origin main
+else
+    git clone https://github.com/danielk-98/template_msg_pkg.git
+fi
 
 # Install ROS dependencies for each package
 cd "$SCRIPT_DIR"
