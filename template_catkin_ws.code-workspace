@@ -15,6 +15,7 @@
 			"/opt/ros/noetic/lib/python3/dist-packages",
 			"devel/lib/python3/dist-packages",
 			"src/template_rospy_pkg/src"
-		]
+		],
+		"ros.distro": "noetic"
 	}
 }
