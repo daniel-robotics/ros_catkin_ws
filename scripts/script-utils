@@ -1,0 +1,40 @@
+function git_reset_pull()
+{
+    local URL="$1"
+    local BRANCH="$2"
+    
+    local EXT="${URL##*.}"
+    local DIR="$(basename "$URL" .$EXT)"
+
+    if [ -d "$DIR" ]; then
+        cd "$DIR"
+        git fetch --all
+        git reset --hard origin/$BRANCH
+        git pull
+        cd ..
+    else
+        git clone "$URL"
+    fi
+}
+
+function search_replace_line_in_file()
+{
+    local SEARCH="$1"
+    local REPLACE="$2"
+    local FILE="$3"
+
+    sed -i "s#$SEARCH#$REPLACE#" "$FILE"
+}
+
+function append_line_if_not_in_file()
+{
+    local APPEND="$1"
+    local FILE="$2"
+
+    grep -qxF "$APPEND" "$FILE" || echo "$APPEND" | tee -a "$FILE" > /dev/null
+}
+
+function newlines_to_spaces()
+{
+    echo "$1" | tr '\n' ' '
+}

@@ -11,6 +11,9 @@
         "ms-iot.vscode-ros",
         "foxundermoon.shell-format",
         "actboy168.tasks",
-        "vscode-icons-team.vscode-icons"
+        "vscode-icons-team.vscode-icons",
+        "yzhang.markdown-all-in-one",
+        "betwo.b2-catkin-tools",
+        "tomoki1207.pdf"
     ]
 }

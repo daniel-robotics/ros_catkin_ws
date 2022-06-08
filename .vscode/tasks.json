@@ -5,29 +5,44 @@
             "label": "CATKIN: Build All Packages",
             "type": "catkin_build",
             "task": "build",
+            "group": {
+                "kind": "build",
+                "isDefault": false  
+            },
             "problemMatcher": [
                 "$catkin-gcc",
                 "$catkin-cmake"
             ],
             "presentation": {
                 "reveal": "always",
-                "panel": "shared",
-                "showReuseMessage": true
+                "panel": "new"
+            },
+            "options": {
+                "statusbar": {
+                    "hide" : false
+                }
             }
         },
         {
             "label": "CATKIN: Build Current Package",
             "type": "catkin_build",
-            "group": "build",
             "task": "build current package",
+            "group": {
+                "kind": "build",
+                "isDefault": true  
+            },
             "problemMatcher": [
                 "$catkin-gcc",
                 "$catkin-cmake"
             ],
             "presentation": {
                 "reveal": "always",
-                "panel": "shared",
-                "showReuseMessage": true
+                "panel": "new"
+            },
+            "options": {
+                "statusbar": {
+                    "hide" : false
+                }
             }
         },
         {
@@ -39,16 +54,6 @@
                 "$catkin-gcc",
                 "$catkin-cmake"
             ],
-            "presentation": {
-                "reveal": "always",
-                "panel": "new"
-            }
-        },
-        {
-            "label": "CATKIN: Init Workspace",
-            "type": "shell",
-            "group": "build",
-            "command": "${workspaceFolder}/init.sh",
             "presentation": {
                 "reveal": "always",
                 "panel": "new"
