@@ -22,6 +22,8 @@ chmod +x *.sh
 # Download ROS utility scripts
 cd "$SCRIPT_DIR"
 git_reset_pull https://github.com/daniel-scripts/ros-noetic-scripts.git main
+cd "./ros-noetic-scripts"
+chmod +x *.sh
 
 
 # Check if ROS is installed correctly
@@ -60,7 +62,6 @@ fi
 cd "$ROOT_DIR"
 mkdir -p "./src"
 catkin init
-
 if [[ "$CATKIN_CONFIG_ARGS" != "" ]]; then
     catkin config $CATKIN_CONFIG_ARGS 
 fi
@@ -79,3 +80,7 @@ echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
     "$SCRIPT_DIR/set-default-workspace.sh"
 fi
+
+echo
+echo "Initialization complete."
+echo

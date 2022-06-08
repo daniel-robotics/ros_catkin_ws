@@ -20,13 +20,14 @@ echo
 # Import package dependencies config file
 if [ -f "$CONF_DIR/depends.conf" ]; then
     source "$CONF_DIR/depends.conf"
-    echo -e "Will download the following APT packages to ./src: $APT_PACKAGES"
+    echo -e "Will download the following APT packages: $APT_PACKAGES"
     echo -e "Will download the following ROS packages to ./src: $ROS_PACKAGES"
     echo -e "Will download the following Git repositories to ./src: $GIT_REPOSITORIES"
     echo
-    APT_PACKAGES="$(newlines_to_spaces "$APT_PACKAGES")"
+    APT_PACKAGES="$(newlines_to_spaces "$APT_PACKAGES")" 
     ROS_PACKAGES="$(newlines_to_spaces "$ROS_PACKAGES")"
-    IFS='\n' read -a GIT_REPOSITORIES <<< "$GIT_REPOSITORIES"
+    split(){ GIT_REPOSITORIES=( $GIT_REPOSITORIES ); }
+    IFS=$'\n' split
 else
     echo "WARNING: $CONF_DIR/depends.conf does not exist."
     echo
@@ -42,21 +43,24 @@ if [[ ! $REPLY =~ ^[Yy]$ ]]; then
     exit
 fi
 
+cd "$ROOT_DIR"
+mkdir -p "./src"
 
 # Download APT packages
 cd "$ROOT_DIR"
 sudo apt-get update
 sudo apt-get install $APT_PACKAGES
 
-# Download ROS packages into source directory
+# Download ROS packages (and dependencies) into source directory
 cd "$ROOT_DIR"
-"$SCRIPT_DIR/rosinstall-generator.sh" "$ROS_PACKAGES"
+"$SCRIPT_DIR/ros-noetic-scripts/rosinstall-generator.sh" "$ROS_PACKAGES"
+rm "./ros-noetic.rosinstall"
 
-# Download dependent Git repos into source directory
+# Download Git repos into source directory
 cd "$SRC_DIR"
 for pkg in "${GIT_REPOSITORIES[@]}"; do
     git_reset_pull $pkg
-fi
+done
 
 echo
 read -r -p "Continue to rosdep? (Y/N): " 
@@ -71,16 +75,16 @@ cd "$ROOT_DIR"
 "$SCRIPT_DIR/ros-noetic-scripts/rosdep-install.sh"
 
 # Execute install.sh in each package (if it exists)
-cd "$SCRIPT_DIR/src"
+cd "$SRC_DIR"
 packages=(*)
-for dir in "${packages[@]}"; do 
-    cd "$SCRIPT_DIR/src/$dir"
+for pkg in "${packages[@]}"; do 
+    cd "$SRC_DIR/$pkg"
     if [ -f "./install.sh" ]; then
-        echo "Executing $dir/install.sh..."
+        echo "Executing $pkg/install.sh..."
         chmod +x ./install.sh
         ./install.sh
     else
-        echo "No install script for $dir"
+        echo "No install script for $pkg"
     fi
 done
 
