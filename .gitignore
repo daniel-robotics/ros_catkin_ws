@@ -14,15 +14,15 @@
 /ros-noetic.rosinstall
 
 # Exclude generated VS Code databases, but keep settings
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-!.vscode/*.code-snippets
-!.vscode/c_cpp_properties.json
-!.vscode/devcontainer.json
-!.vscode/launch.json
+/.vscode/*
+!/.vscode/settings.json
+!/.vscode/tasks.json
+!/.vscode/launch.json
+!/.vscode/extensions.json
+!/.vscode/*.code-snippets
+!/.vscode/c_cpp_properties.json
+!/.vscode/devcontainer.json
+!/.vscode/launch.json
 
 # Log files
 .log
