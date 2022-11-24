@@ -8,7 +8,7 @@ This project attempts to create a managed Catkin workspace in which external dep
 
 ## Usage:
 1. Install ROS using the **ros_noetic_scripts** package, or create your own **~/.rosconfig** file. See here: https://github.com/daniel-utilities/ros-noetic-scripts
-2. Create a new repo based on this template, and clone it to your machine (git clone ....)
+2. Create a new repo based on this template, and clone it to your machine: `git clone --recursive URL`
 3. Edit the file: **config/depends.conf** . Add here any external dependencies which are required by your ROS project. Supports 3 kinds of dependencies:  
      - APT_PACKAGES: packages to be installed through apt-get. Always prefer to install ROS packages this way if possible. Typically ROS packages in APT are listed as ros-noetic-PKG.
      - ROS_PACKAGES: ROS sources to be downloaded to the project's **src/** directory. Missing dependencies will be downloaded recursively. Any packages already installed to the global ROS installation will be skipped. See available packages at https://index.ros.org/packages/ .
