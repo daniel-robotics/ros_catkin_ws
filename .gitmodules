@@ -6,3 +6,7 @@
 	path = src/ros_msg_pkg
 	url = https://github.com/daniel-robotics/ros_msg_pkg.git
 	branch = main
+[submodule "scripts/bash-common-scripts"]
+	path = scripts/bash-common-scripts
+	url = https://github.com/daniel-utilities/bash-common-scripts.git
+	branch = main
