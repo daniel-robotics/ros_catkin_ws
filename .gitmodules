@@ -10,3 +10,7 @@
 	path = scripts/bash-common-scripts
 	url = https://github.com/daniel-utilities/bash-common-scripts.git
 	branch = main
+[submodule "scripts/ros-noetic-scripts"]
+	path = scripts/ros-noetic-scripts
+	url = https://github.com/daniel-utilities/ros-noetic-scripts.git
+	branch = main
