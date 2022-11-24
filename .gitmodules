@@ -1,0 +1,8 @@
+[submodule "src/ros_python_pkg"]
+	path = src/ros_python_pkg
+	url = https://github.com/daniel-robotics/ros_python_pkg.git
+	branch = main
+[submodule "src/ros_msg_pkg"]
+	path = src/ros_msg_pkg
+	url = https://github.com/daniel-robotics/ros_msg_pkg.git
+	branch = main
